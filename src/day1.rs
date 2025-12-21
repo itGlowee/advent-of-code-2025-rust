@@ -1,5 +1,5 @@
 use core::panic;
-use crate::{Problem, ExtraPart};
+use crate::Problem;
 
 
 enum RotDir {
@@ -13,12 +13,6 @@ struct Rotation {
 
 pub struct Day01 {
     rotations: Vec<Rotation>
-}
-
-impl ExtraPart for Day01 {
-    fn solveExtra(&self) -> Option<String> {
-        Some("asdf".to_string())
-    }
 }
 
 impl Problem for Day01 {
@@ -47,7 +41,34 @@ impl Problem for Day01 {
             if current_value == 0 {
                 result += 1;
             }
-            println!("{}", current_value);
+        }
+        Some(result.to_string())
+    }
+}
+
+impl Day01 {
+    pub fn solve2(&self) -> Option<String> {
+        let mut current_value: u32 = 50;
+        let mut result: u32 = 0;
+        for rotation in &self.rotations {
+            result += rotation.distance / 100; // full turns
+            match rotation.direction {
+                RotDir::Clockwise => {
+                    if (current_value + (rotation.distance % 100)) > 100 {
+                        result += 1; // leftover turn
+                    }
+                    current_value = (current_value + (rotation.distance % 100)) % 100;
+                },
+                RotDir::Counterclockwise => {
+                    if current_value > 0 && current_value < (rotation.distance % 100) {
+                        result += 1; // leftover turn
+                    }
+                    current_value = (current_value + 100 - (rotation.distance % 100)) % 100;
+                }
+            }
+            if current_value == 0 {
+                result += 1;
+            }
         }
         Some(result.to_string())
     }

@@ -12,6 +12,11 @@ fn main() {
             Some(result) => println!("Solved day {}: {}", p.day(), result),
             None => println!("Couldn't solve day {}", p.day())
         }
+
+        match p.solve2() {
+            Some(result) => println!("Solved day {} extra: {}", p.day(), result),
+            None => println!("Couldn't solve day {}", p.day())
+        }
     }
 
 }
@@ -26,9 +31,5 @@ pub trait Problem {
         let input = std::fs::read_to_string(path).expect("Failed to read input file");
         Self::from_input(input)
     }
-}
-
-pub trait ExtraPart {
-    fn solveExtra(&self) -> Option<String>;
 }
 
