@@ -46,6 +46,33 @@ impl Problem for Day02 {
         Some(result.to_string())
     }
     fn solve2(&self) -> Option<String> {
-        None
+        let mut result: u64 = 0;
+        for range in &self.ranges {
+            for num in range.start..=range.end {
+                let num_string: String = num.to_string();
+                let mut prev = String::new();
+                for (_i, c) in num_string.chars().enumerate() {
+                    prev.push(c);
+                    let parts = num_string.len() / prev.len();
+                    if parts * prev.len() != num_string.len() {
+                        continue;
+                    }
+                    let mut matches = 0;
+                    for i in 0..parts {
+                        if num_string[i * prev.len()..i * prev.len() + prev.len()] != prev {
+                            break;
+                        }
+                        else {
+                            matches += 1;
+                        }
+                    }
+                    if matches >= 2 && matches == parts {
+                        result += num;
+                        break;
+                    }
+                }
+            }
+        }
+        Some(result.to_string())
     }
 }

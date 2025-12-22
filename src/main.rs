@@ -18,7 +18,7 @@ fn main() {
 
         match p.solve2() {
             Some(result) => println!("Solved day {} extra: {}", p.day(), result),
-            None => println!("Couldn't solve day {}", p.day())
+            None => (),
         }
     }
 
