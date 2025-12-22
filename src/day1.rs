@@ -44,10 +44,7 @@ impl Problem for Day01 {
         }
         Some(result.to_string())
     }
-}
-
-impl Day01 {
-    pub fn solve2(&self) -> Option<String> {
+    fn solve2(&self) -> Option<String> {
         let mut current_value: u32 = 50;
         let mut result: u32 = 0;
         for rotation in &self.rotations {
