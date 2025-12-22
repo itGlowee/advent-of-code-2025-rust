@@ -1,13 +1,16 @@
 mod day1;
 mod day2;
+mod day3;
 use day1::Day01;
 use day2::Day02;
+use day3::Day03;
 
 
 fn main() {
     let problems: Vec<Box<dyn Problem>> = vec![
         Box::new(Day01::new("inputs/day1.txt")),
         Box::new(Day02::new("inputs/day2.txt")),
+        Box::new(Day03::new("inputs/day3.txt")),
     ];
 
     for p in problems {
