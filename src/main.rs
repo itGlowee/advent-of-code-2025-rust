@@ -12,7 +12,7 @@ fn main() {
     let problems: Vec<Box<dyn Problem>> = vec![
         Box::new(Day01::new("inputs/day1.txt")),
         Box::new(Day02::new("inputs/day2.txt")),
-        Box::new(Day03::new("inputs/day3example.txt")),
+        Box::new(Day03::new("inputs/day3.txt")),
         Box::new(Day04::new("inputs/day4.txt")),
     ];
 
