@@ -48,10 +48,11 @@ impl Problem for Day02 {
     fn solve2(&self) -> Option<String> {
         let mut result: u64 = 0;
         for range in &self.ranges {
+            let mut prev = String::with_capacity(20);
             for num in range.start..=range.end {
-                let num_string: String = num.to_string();
-                let mut prev = String::new();
-                for (_i, c) in num_string.chars().enumerate() {
+                prev.clear();
+                let num_string = num.to_string();
+                for c in num_string.chars() {
                     prev.push(c);
                     let parts = num_string.len() / prev.len();
                     if parts * prev.len() != num_string.len() {
