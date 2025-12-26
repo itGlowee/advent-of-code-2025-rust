@@ -60,7 +60,6 @@ impl Problem for Day07 {
         }
     }
     fn solve(&self) -> Option<String> {
-        print_map(&self.map.clone());
         let mut result = 0;
         let mut prev_row: Option<Vec<Entity>> = None;
         let mut new_map: Vec<Vec<Entity>> = Vec::new();
@@ -86,11 +85,43 @@ impl Problem for Day07 {
             }
             prev_row = Some(new_row.clone());
             new_map.push(new_row);
-            print_map(&new_map);
         }
         Some(result.to_string())
     }
     fn solve2(&self) -> Option<String> {
+        // count unique paths WIP
+        // let mut map = self.map.clone();
+        // map.reverse();
+        // let map = map;
+        // print_map(&map.clone());
+        // let mut result = 0;
+        // let mut prev_row: Option<Vec<Entity>> = None;
+        // let mut new_map: Vec<Vec<Entity>> = Vec::new();
+        // for row in &map {
+        //     let mut new_row = row.clone();
+        //     if let Some(prev_row) = prev_row {
+        //         for i in 0..row.len() {
+        //             let prev_ent = prev_row.get(i).unwrap();
+        //             let cur_ent = row.get(i).unwrap();
+        //             if *prev_ent == Entity::Beam {
+        //                 if *cur_ent == Entity::Empty {
+        //                     new_row[i] = Entity::Beam;
+        //                 }
+        //             }
+        //             if *prev_ent == Entity::Beam {
+        //                 if *cur_ent == Entity::Splitter {
+        //                     new_row[i - 1] = Entity::Beam;
+        //                     new_row[i + 1] = Entity::Beam;
+        //                     result += 1;
+        //                 }
+        //             }
+        //         }
+        //     }
+        //     prev_row = Some(new_row.clone());
+        //     new_map.push(new_row);
+        // }
+        // print_map(&new_map);
+        // Some(result.to_string())
         None
     }
 }
