@@ -59,7 +59,7 @@ impl Problem for Day08 {
         Day08 { boxes: positions }
     }
     fn solve(&self) -> Option<String> {
-        println!("{:?}", self);
+        // println!("{:?}", self);
         let mut min_distance = f32::MAX;
         for _ in 0..PAIRS {
             for pos1 in &self.boxes {
@@ -79,7 +79,7 @@ impl Problem for Day08 {
                 // connect
                 match last_pos2 {
                     Some(last_pos2) => {
-                        println!("Smallest distance found between {:?} and {:?}", pos1, last_pos2);
+                        // println!("Smallest distance found between {:?} and {:?}", pos1, last_pos2);
                     }
                     None => (),
                 }
