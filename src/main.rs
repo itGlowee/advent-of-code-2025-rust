@@ -31,7 +31,7 @@ fn main() {
         Box::new(Day07::new("inputs/day7.txt")),
         Box::new(Day08::new("inputs/day8example.txt")),
         Box::new(Day09::new("inputs/day9.txt")),
-        Box::new(Day10::new("inputs/day10example.txt")),
+        Box::new(Day10::new("inputs/day10.txt")),
     ];
 
     for p in problems {

@@ -1,4 +1,4 @@
-use std::fmt::{Debug, Display};
+use std::{fmt::{Debug, Display}, ops::DerefMut};
 
 use crate::Problem;
 
@@ -125,73 +125,45 @@ impl Problem for Day10 {
         let mut result = 0;
         for machine in &self.machines {
             let Machine { goal, buttons } = machine;
-            let mut buttons = buttons.clone();
-            let mut solved: Option<u32> = None;
-            while solved.is_none() {
-                let mut new_buttons = Vec::new();
-                let mut new_button = Button { complexity: 0, wires: Vec::new(), pushed: false };
-                for i in 0..buttons.len() {
-                    if solved.is_some() {
+            let mut machine_solved = false;
+            for complexity in 1..(machine.buttons.len() + 1) {
+                let mut test: Vec<usize> = (0..complexity).collect();
+                loop {
+                    let mut state = goal.0.clone();
+                    state.fill(false);
+                    for b_index in test.iter() {
+                        for wire in buttons.get(*b_index).unwrap().wires.iter() {
+                            state[*wire as usize] = !state[*wire as usize];
+                        }
+                    }
+
+                    if state == goal.0 {
+                        machine_solved = true;
+                        result += complexity;
                         break;
                     }
-                    let button1 = &mut buttons[i].clone();
-                    for ii in (i + 1)..buttons.len() {
-                        let button2 = &mut buttons[ii].clone();
 
-                        if goal.0.iter().enumerate().all(|(i, on)| {
-                                button1.wires.contains(&(i as u32)) == *on
-                        }) {
-                            button1.pushed = true;
-                            buttons[i] = button1.clone();
-                            solved = Some(button1.complexity);
-                            println!("Solved with {button1:?}");
-                            break;
-                        } else if goal.0.iter().enumerate().all(|(i, on)| {
-                                button2.wires.contains(&(i as u32)) == *on
-                        }) {
-                            button2.pushed = true;
-                            buttons[ii] = button2.clone();
-                            solved = Some(button2.complexity);
-                            println!("Solved with {button2:?}");
-                            break;
-                        }
+                    // Basically bionomial coefficient thingy...
+                    let mut incremented = false;
+                    for pos in (0..test.len()).rev() {
+                        if test[pos] < buttons.len() - (test.len() - pos) {
+                            test[pos] += 1;
 
-                        new_button.wires.clear();
-                        new_button.complexity = button1.complexity + button2.complexity;
-                        for wire in button1.wires.iter().chain(button2.wires.iter()) {
-                            if let Some(pos) = new_button.wires.iter().position(|n| n == wire) {
-                                new_button.wires.remove(pos);
+                            for j in (pos + 1)..test.len() {
+                                test[j] = test[j - 1] + 1;
                             }
-                            else {
-                                new_button.wires.push(*wire);
-                            }
-                        }
-                        if new_button.wires.is_empty() {
-                            continue;
-                        }
-                        if goal.0.iter().enumerate().all(|(i, on)| {
-                                new_button.wires.contains(&(i as u32)) == *on
-                        }) {
-                            button1.pushed = true;
-                            buttons[i] = button1.clone();
-                            button2.pushed = true;
-                            buttons[ii] = button2.clone();
-                            solved = Some(new_button.complexity);
-                            println!("Solved with {new_button:?}");
-                            // new_buttons.push(new_button.clone());
+                            incremented = true;
                             break;
                         }
-                        // new_buttons.push(new_button.clone());
+                    }
+                    if !incremented {
+                        break;
                     }
                 }
-                buttons.append(&mut new_buttons);
+                if machine_solved {
+                    break;
+                }
             }
-            result += solved.unwrap();
-            let new_machine = Machine {
-                buttons,
-                goal: goal.clone(),
-            };
-            println!("{new_machine}");
         }
         Some(result.to_string())
     }
