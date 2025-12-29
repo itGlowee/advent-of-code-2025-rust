@@ -1,4 +1,4 @@
-use std::{fmt::Debug, ops::Deref};
+use std::{fmt::Debug };
 
 use crate::Problem;
 
@@ -12,9 +12,10 @@ enum Entity {
 #[derive(Clone)]
 pub struct Day07 {
     map: Vec<Vec<Entity>>,
-    width: u32,
+    _width: u32,
 }
 
+#[allow(dead_code)]
 fn print_map(map: &Vec<Vec<Entity>>) {
     let result: Vec<String> = (&map).iter().map(|row| {
         row.iter().map(|e| {
@@ -56,7 +57,7 @@ impl Problem for Day07 {
         assert!(width > 0);
         Day07 {
             map,
-            width,
+            _width: width,
         }
     }
     fn solve(&self) -> Option<String> {

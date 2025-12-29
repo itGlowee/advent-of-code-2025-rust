@@ -1,5 +1,5 @@
 use crate::Problem;
-use std::ops::{Deref, Range};
+use std::ops::{Range};
 pub struct Day05 {
     ranges: Vec<Range<u64>>,
     wanna_know: Vec<u64>,

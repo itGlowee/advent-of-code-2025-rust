@@ -11,6 +11,7 @@ struct Position {
 }
 
 #[derive(Debug, Clone, PartialEq)]
+#[allow(dead_code)]
 struct JunctionBox<'a> {
     pos: Position,
     connections: Vec<&'a JunctionBox<'a>>,
@@ -78,7 +79,7 @@ impl Problem for Day08 {
 
                 // connect
                 match last_pos2 {
-                    Some(last_pos2) => {
+                    Some(_last_pos2) => {
                         // println!("Smallest distance found between {:?} and {:?}", pos1, last_pos2);
                     }
                     None => (),

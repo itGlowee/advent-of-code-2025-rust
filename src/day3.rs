@@ -22,8 +22,8 @@ impl Problem for Day03 {
         let mut result: usize = 0;
         for bank in &self.banks {
             let mut highest: usize = 0;
-            let mut first: usize = 0;
-            let mut second: usize = 0;
+            let mut _first: usize = 0;
+            let mut _second: usize = 0;
             for (i, num) in bank.iter().enumerate() {
                 for (ii, num2) in bank.iter().enumerate() {
                     if i >= ii {
@@ -32,8 +32,8 @@ impl Problem for Day03 {
                     let total: usize = (*num as usize) * 10 + (*num2 as usize);
                     if total > highest {
                         highest = total;
-                        first = i;
-                        second = ii;
+                        _first = i;
+                        _second = ii;
                     }
                 }
             }
@@ -43,6 +43,7 @@ impl Problem for Day03 {
     }
     fn solve2(&self) -> Option<String> {
         return None;
+        #[allow(unreachable_code)]
         let mut result: usize = 0;
         let digits = 12;
         for bank in &self.banks {
