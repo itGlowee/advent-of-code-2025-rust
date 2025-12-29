@@ -9,6 +9,7 @@ mod day8;
 mod day9;
 mod day10;
 mod day11;
+mod day12;
 use day1::Day01;
 use day2::Day02;
 use day3::Day03;
@@ -20,6 +21,7 @@ use day8::Day08;
 use day9::Day09;
 use day10::Day10;
 use day11::Day11;
+use day12::Day12;
 
 
 fn main() {
@@ -35,6 +37,7 @@ fn main() {
         Box::new(Day09::new("inputs/day9.txt")),
         Box::new(Day10::new("inputs/day10.txt")),
         Box::new(Day11::new("inputs/day11.txt")),
+        Box::new(Day12::new("inputs/day12example.txt")),
     ];
 
     for p in problems {
