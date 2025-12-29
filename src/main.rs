@@ -26,17 +26,17 @@ use day12::Day12;
 
 fn main() {
     let problems: Vec<Box<dyn Problem>> = vec![
-        Box::new(Day01::new("inputs/day1.txt")),
-        Box::new(Day02::new("inputs/day2.txt")),
-        Box::new(Day03::new("inputs/day3.txt")),
-        Box::new(Day04::new("inputs/day4.txt")),
-        Box::new(Day05::new("inputs/day5.txt")),
-        Box::new(Day06::new("inputs/day6.txt")),
-        Box::new(Day07::new("inputs/day7.txt")),
+        Box::new(Day01::new("inputs/day1example.txt")),
+        Box::new(Day02::new("inputs/day2example.txt")),
+        Box::new(Day03::new("inputs/day3example.txt")),
+        Box::new(Day04::new("inputs/day4example.txt")),
+        Box::new(Day05::new("inputs/day5example.txt")),
+        Box::new(Day06::new("inputs/day6example.txt")),
+        Box::new(Day07::new("inputs/day7example.txt")),
         Box::new(Day08::new("inputs/day8example.txt")),
-        Box::new(Day09::new("inputs/day9.txt")),
-        Box::new(Day10::new("inputs/day10.txt")),
-        Box::new(Day11::new("inputs/day11.txt")),
+        Box::new(Day09::new("inputs/day9example.txt")),
+        Box::new(Day10::new("inputs/day10example.txt")),
+        Box::new(Day11::new("inputs/day11example.txt")),
         Box::new(Day12::new("inputs/day12example.txt")),
     ];
 
