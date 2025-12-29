@@ -21,7 +21,6 @@ impl Problem for Day11 {
                 Vec::from_iter(line.chars().skip_while(|c| !(*c).is_whitespace()).collect::<String>().trim().split(' ').map(|str| String::from_str(str).unwrap())),
             );
         }
-        println!("{devices:?}");
         Day11 {
             devices: devices,
         }
